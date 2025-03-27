@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritu Rajput - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;       /* Lavender purple */
+            --secondary: #a29bfe;     /* Light lavender */
+            --dark: #2d3436;          /* Dark gray */
+            --light: #f5f6fa;         /* Off-white */
+            --accent: #fd79a8;        /* Pink accent */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Animated floating bubbles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-animation div {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(108, 92, 231, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            border: 1px solid rgba(162, 155, 254, 0.3);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
+        /* Header with Profile Photo */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .header-text {
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Project Thumbnails */
+        .project-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .project-thumbnail::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 92, 231, 0.85), rgba(162, 155, 254, 0.85));
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-thumbnail::before {
+            opacity: 0.6;
+        }
+
+        .project-thumbnail i {
+            color: white;
+            font-size: 3rem;
+            z-index: 1;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-thumbnail i {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* About section */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            line-height: 1.7;
+        }
+        
+        .skills {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.7rem;
+            font-size: 1.4rem;
+        }
+        
+        .timeline-content .date {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 0.7rem;
+            display: block;
+            font-size: 1rem;
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-info {
+            padding: 1.8rem;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .project-info p {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .project-link:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(45, 52, 54, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .footer-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .contact-info a {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Animation delays for project cards */
+        .project-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+        .project-card:nth-child(9) { animation-delay: 0.9s; }
+        .project-card:nth-child(10) { animation-delay: 1s; }
+    </style>
+</head>
+<body>
+    <!-- Animated background bubbles -->
+    <div class="bg-animation">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <!-- Header with Profile Photo -->
+    <header>
+        <div class="profile-container">
+            <!-- Replace with your photo -->
+            <img src="images/profile.jpg" alt="Ritu Rajput" class="profile-photo">
+            <div class="header-text">
+                <h1>Ritu Rajput</h1>
+                <p>Computer Science Student | Full Stack Developer | Cloud Enthusiast</p>
+                <div class="contact-info">
+                    <a href="mailto:riturajput1801@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="tel:9773018275"><i class="fas fa-phone"></i> Call</a>
+                    <a href="https://linkedin.com/in/ritu-rajput-531610256" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/ritu-pixel" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a Computer Science student specializing in CCVT at the University of Petroleum Energies and Studies, Dehradun. Passionate about full-stack development, cloud computing, and creating impactful projects that solve real-world problems.</p>
+                    <p>With a strong foundation in both frontend and backend technologies, I enjoy building complete solutions from concept to deployment. My AWS certifications demonstrate my commitment to cloud technologies and scalable architectures.</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h3>Databases & Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Developer Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">English Fluency</span>
+                            <span class="skill-tag">Detail Oriented</span>
+                            <span class="skill-tag">Team Collaboration</span>
+                            <span class="skill-tag">Teaching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education & Experience -->
+        <section id="timeline">
+            <h2>Education & Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>B.Tech. in Computer Science (CCVT)</h3>
+                        <span class="date">2022 - 2026</span>
+                        <p>University of Petroleum Energies and Studies, Dehradun</p>
+                        <p>CGPA: 7.34</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Higher Secondary School</h3>
+                        <span class="date">2018 - 2019</span>
+                        <p>St. Ann's School, Ahmedabad</p>
+                        <p>Percentage: 93.8%</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Secondary High School</h3>
+                        <span class="date">2020 - 2021</span>
+                        <p>St. Ann's School, Ahmedabad</p>
+                        <p>Percentage: 77.8%</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Srijan Social Intern</h3>
+                        <span class="date">June 2023 - July 2023</span>
+                        <p>Saptrangi Institute, Ahmedabad</p>
+                        <p>Designed and implemented engaging lesson plans, conducted interactive sessions, and developed teaching methodologies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <!-- Projects -->
+<section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+        <!-- Docker Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Containerized+SQL');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Containerized SQL</h3>
+                <p>Docker container setup for SQL databases with persistent storage.</p>
+                <a href="https://github.com/ritu-pixel/Containerized-sql" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Docker+Bake');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Docker Bake</h3>
+                <p>Automated Docker image building with multiple configurations.</p>
+                <a href="https://github.com/ritu-pixel/Docker-Bake" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Docker+Networking');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Docker Bridge Networking</h3>
+                <p>Implementation of Docker bridge networking for container communication.</p>
+                <a href="https://github.com/ritu-pixel/Docker-Bridge-Networking" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Docker+Swarm');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Docker Swarm Microservices</h3>
+                <p>Microservices architecture deployed using Docker Swarm.</p>
+                <a href="https://github.com/ritu-pixel/Docker-Swarm-Microservices" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Docker+Volumes');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Docker Volume Persistence</h3>
+                <p>Implementing persistent storage solutions with Docker volumes.</p>
+                <a href="https://github.com/ritu-pixel/Docker-Volume-Persistence" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Streamlit+Docker');">
+                <i class="fab fa-docker"></i>
+            </div>
+            <div class="project-info">
+                <h3>Dockerized Streamlit</h3>
+                <p>Streamlit development environment containerized with Docker.</p>
+                <a href="https://github.com/ritu-pixel/Dockerized-Streamlit-Development-Environment" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+
+        <!-- Kubernetes Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Minikube');">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <div class="project-info">
+                <h3>MiniKube and Kubectl</h3>
+                <p>Local Kubernetes cluster setup and management with MiniKube.</p>
+                <a href="https://github.com/ritu-pixel/MiniKubes-and-Kubectle" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=K8s+Microservices');">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <div class="project-info">
+                <h3>Minikube Microservices</h3>
+                <p>Microservices deployment on Minikube Kubernetes cluster.</p>
+                <a href="https://github.com/ritu-pixel/Minikube-Microservices" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Python Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Python+Logging');">
+                <i class="fab fa-python"></i>
+            </div>
+            <div class="project-info">
+                <h3>Python Logging in Docker</h3>
+                <p>Implementing Python logging solutions within Docker containers.</p>
+                <a href="https://github.com/ritu-pixel/Python-logging-Docker" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Streamlit Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Streamlit+EC2');">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="project-info">
+                <h3>Streamlit EC2</h3>
+                <p>Deploying Streamlit applications on AWS EC2 instances.</p>
+                <a href="https://github.com/ritu-pixel/Streamlit-EC2" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Streamlit+Demo');">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="project-info">
+                <h3>Streamlit Hello World</h3>
+                <p>Basic Streamlit application demonstrating core features.</p>
+                <a href="https://github.com/ritu-pixel/Streamlit_Hello-world" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Streamlit+App');">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="project-info">
+                <h3>Streamlit App</h3>
+                <p>Custom Streamlit application with interactive components.</p>
+                <a href="https://github.com/ritu-pixel/streamlit-app" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Database Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=PostgreSQL');">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="project-info">
+                <h3>SQL PostgreSQL</h3>
+                <p>PostgreSQL database implementations and queries.</p>
+                <a href="https://github.com/ritu-pixel/sql-postgresql" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <!-- ML Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Titanic+ML');">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="project-info">
+                <h3>Titanic Prediction Model</h3>
+                <p>Machine learning model predicting Titanic survival rates.</p>
+                <a href="https://github.com/ritu-pixel/titanic_prediction_model" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Evidently+AI');">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="project-info">
+                <h3>Evidently AI</h3>
+                <p>Machine learning model monitoring and evaluation with Evidently AI.</p>
+                <a href="https://github.com/ritu-pixel/Evidently-AI" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Featured Projects -->
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Job+Portal');">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="project-info">
+                <h3>HiredHub Job Portal</h3>
+                <p>Django-based job searching platform with user authentication.</p>
+                <a href="#" class="project-link">View Details</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-thumbnail" style="background-image: url('https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Code+Organizer');">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="project-info">
+                <h3>Code Snippet Organizer</h3>
+                <p>Tool for developers to store and organize code snippets (Ongoing).</p>
+                <a href="#" class="project-link">View Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+        
+        <!-- Certifications -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-thumbnail" style="background-color: #FF9900; background-image: none;">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>AWS Practitioner Essentials</h3>
+                        <p>AWS Academy Graduate - Cloud Practitioner Essentials</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumbnail" style="background-color: #FF9900; background-image: none;">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>AWS Cloud Architecting</h3>
+                        <p>AWS Academy Graduate - Cloud Architecting</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumbnail" style="background-color: #FF9900; background-image: none;">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>AWS Intro to Cloud</h3>
+                        <p>AWS Academy Graduate - Introduction to Cloud</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="mailto:riturajput1801@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:9773018275"><i class="fas fa-phone"></i></a>
+            <a href="https://linkedin.com/in/ritu-rajput-531610256" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ritu-pixel" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2024 Ritu Rajput. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Animate timeline items when they come into view
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
